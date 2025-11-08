@@ -723,17 +723,44 @@ ESTILOS ADICIONAIS PARA A PÁGINA DE PERFIL (tela_perfil.html)
 ============================================================
 --- */
 
-/* Container que segura o banner e a barra de info */
+/* 1. CORREÇÃO DA NAVBAR "CORTADA" */
+/* Removendo as margens negativas que puxavam o conteúdo para cima */
 .profile-header-container {
   position: relative;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   background-color: #FFFFFF;
   margin-bottom: 25px; 
-  /* Remove o padding padrão da tag <main> para o banner encostar */
-  margin-top: -40px;
-  margin-left: -50px;
-  margin-right: -50px;
+  /* As margens negativas (margin-top, margin-left, margin-right) 
+    foram REMOVIDAS daqui para parar de cobrir a navbar.
+  */
+}
+
+/* Como removemos as margens negativas, o banner não encosta mais
+   nas laterais. Adicionamos este @media query para o banner
+   voltar a encostar nas laterais apenas no mobile, onde faz sentido.
+*/
+@media (max-width: 768px) {
+  .profile-header-container {
+    margin-top: -30px;
+    margin-left: -25px;
+    margin-right: -25px;
+  }
+}
+@media (max-width: 576px) {
+  .profile-header-container {
+    margin-top: -20px;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
+
+/* 2. CORREÇÃO DO "QUADRADO AZUL" */
+/* Remove o anel de foco (outline/box-shadow) das abas */
+.profile-tabs .nav-link:focus,
+.profile-tabs .nav-link.active:focus {
+  outline: none;
+  box-shadow: none; /* Bootstrap 5 usa box-shadow para o foco */
 }
 
 /* Banner Verde (no topo) */
@@ -1811,4 +1838,246 @@ body.role-admin .help-btn-admin {
 }
 body.role-admin .help-btn-user {
   display: none; 
+}
+
+/* ---
+============================================================
+ESTILOS ADICIONAIS PARA A TELA DE LOGIN (tela_login.html)
+============================================================
+--- */
+
+/* Sobrescreve o 'body' padrão APENAS na tela de login */
+body.login-page {
+  font-family: 'Poppins', sans-serif;
+  background-color: #D1D1D1;
+  color: #FFFFFF;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Mantém o padding do seu body original */
+}
+
+/* Garante que o reset * não afete outros resets */
+.login-page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Container Principal do Login --- */
+.login-page .login-container {
+  display: flex;
+  width: 900px;
+  max-width: 100%;
+  height: 600px;
+  background-color: #386641;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* --- Painéis (Esquerda e Direita) --- */
+.login-page .info-panel,
+.login-page .login-panel {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Estilos do Painel de Informações (Esquerda) --- */
+.login-page .info-panel {
+  position: relative;
+  justify-content: space-between;
+}
+
+.login-page .info-panel::before {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  bottom: 50px;
+  width: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 0;
+}
+
+.login-page .info-panel .logo,
+.login-page .info-panel .description {
+  position: relative;
+  z-index: 1;
+  padding-left: 30px;
+}
+
+.login-page .logo .logo-image {
+  width: 100px;
+  margin-bottom: 15px;
+}
+
+.login-page .logo h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 5px 0;
+}
+
+.login-page .logo p {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  opacity: 0.8;
+}
+
+.login-page .info-panel .description {
+  max-width: 280px;
+}
+
+.login-page .description p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 1.5;
+}
+
+.login-page .info-panel .illustration {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.login-page .info-panel .illustration img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Estilos do Painel de Login (Direita) --- */
+.login-page .login-panel {
+  justify-content: center;
+  position: relative;
+}
+
+.login-page .login-panel h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #FFFFFF;
+}
+
+.login-page .input-group {
+  margin-bottom: 20px;
+}
+
+.login-page .input-group label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #FFFFFF;
+}
+
+.login-page .input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #E7E7E4;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.login-page .input-group input:focus {
+  outline: 2px solid #5ab394;
+}
+
+.login-page .password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-page .password-icon-svg {
+  position: absolute;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  fill: #888;
+  opacity: 0.7;
+}
+
+.login-page .login-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #D1D1D1;
+  color: #386641;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.login-page .login-button:hover {
+  background-color: #c1c1c1;
+}
+
+/* Estilo para as duas imagens de crédito */
+.login-page .developer-credit {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-page .developer-credit .credit-text-image {
+  width: 90px;
+  height: auto;
+}
+
+.login-page .developer-credit .credit-logo-image {
+  width: 35px;
+  height: auto;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 850px) {
+  .login-page .login-container {
+      flex-direction: column;
+      height: auto;
+  }
+  .login-page .info-panel {
+      display: none;
+  }
+  .login-page .login-panel {
+      border-radius: 30px;
+  }
+}
+
+/* ---
+============================================================
+ESTILOS PARA BOTÃO "RELEVANTE" (CURTIR)
+============================================================
+--- */
+
+/* Estilo para o botão "Relevante" quando está ativo (clicado) */
+.post-action-btn.active {
+  background-color: #386641; /* Cor verde padrão */
+  color: #FFFFFF !important; /* Texto branco */
+  font-weight: 700;
+}
+
+/* Adiciona um ícone de "up" quando está ativo */
+.post-action-btn.active::before {
+  content: "\f148"; /* Código do ícone 'arrow-up-circle-fill' do Bootstrap */
+  font-family: "bootstrap-icons";
+  margin-right: 6px;
+}
+
+/* Animação de "pulso" ao clicar (feedback tátil) */
+.post-action-btn:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
 }

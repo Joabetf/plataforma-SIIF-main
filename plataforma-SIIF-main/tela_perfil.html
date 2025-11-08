@@ -128,7 +128,7 @@
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="#"><i class="bi bi-bookmark-fill me-2"></i> Salvar Post</a></li>
                     <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-flag-fill me-2"></i> Denunciar</a></li>
-                    </ul>
+                  </ul>
                 </div>
               </div>
               <div class="post-card-body">
@@ -290,10 +290,17 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Pega o hash da URL (ex: #salvos-tab)
       const hash = window.location.hash;
       if (hash) {
-        const tabTrigger = document.querySelector(`.nav-tabs button[id="${hash.substring(1)}"]`);
+        
+        // **** CORREÇÃO AQUI ****
+        // O seletor foi trocado de '.nav-tabs' para '.profile-tabs'
+        const tabTrigger = document.querySelector(`.profile-tabs button[id="${hash.substring(1)}"]`);
+        // **** FIM DA CORREÇÃO ****
+        
         if (tabTrigger) {
+          // "Clica" na tab para ativá-la
           const tab = new bootstrap.Tab(tabTrigger);
           tab.show();
         }
