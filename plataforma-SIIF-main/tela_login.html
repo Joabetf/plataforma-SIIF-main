@@ -32,7 +32,9 @@
 
         <section class="login-panel">
             <h2>Login</h2>
-            <form>
+
+            <!-- FORMULÁRIO AJUSTADO -->
+            <form onsubmit="window.location.href='tela_inicial.html'; return false;">
                 <div class="input-group">
                     <label for="usuario">Usuário:</label>
                     <input type="text" id="usuario" name="usuario" value="2022984901" required>
@@ -46,8 +48,10 @@
                         </svg>
                     </div>
                 </div>
+
                 <button type="submit" class="login-button">Acessar</button>
             </form>
+
             <div class="developer-credit">
                 <img src="img/credito-texto.png" alt="Desenvolvido por" class="credit-text-image">
                 <img src="img/credito-logo-in4.png" alt="Logo IN4" class="credit-logo-image">
